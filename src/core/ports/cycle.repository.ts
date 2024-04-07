@@ -1,6 +1,6 @@
-import {CyclePhase} from "../domain/cycle-phase";
+import {CyclePhaseEntity} from "../domain/cycle-phase-entity";
 
 export interface CycleRepository {
-    getCurrentPhase(today: Date): CyclePhase;
+    getCurrentPhase(today: Date): CyclePhaseEntity;
     saveStartDate(date: Date): void;
 }
