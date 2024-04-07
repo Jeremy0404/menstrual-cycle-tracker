@@ -2,20 +2,20 @@ import fs from 'fs';
 import path from 'path';
 import {CycleRepository} from "../core/ports/cycle.repository";
 import {CyclePhaseEntity} from "../core/domain/cycle-phase-entity";
-import {CyclePhaseDetails, CyclePhaseEnum} from "../core/domain/cycle-phase.enum";
+import {CyclePhaseDetails, cyclePhaseDetailsMap, CyclePhaseEnum} from "../core/domain/cycle-phase.enum";
 
 const cycleLength = 28;
 const DATA_FILE = path.join(__dirname, '..', '..', 'db.json');
 
-function getCurrentPhase(cycleDay: number) {
+function getCurrentPhase(cycleDay: number): CyclePhaseDetails | undefined {
     if (cycleDay >= 1 && cycleDay <= 5) {
-        return CyclePhaseEnum.Menstrual;
+        return cyclePhaseDetailsMap.get(CyclePhaseEnum.MENSTRUAL);
     } else if (cycleDay >= 6 && cycleDay <= 13) {
-        return CyclePhaseEnum.Follicular;
+        return cyclePhaseDetailsMap.get(CyclePhaseEnum.FOLLICULAR);
     } else if (cycleDay === 14) {
-        return CyclePhaseEnum.Ovulation;
+        return cyclePhaseDetailsMap.get(CyclePhaseEnum.OVULATION);
     } else {
-        return CyclePhaseEnum.Luteal;
+        return cyclePhaseDetailsMap.get(CyclePhaseEnum.LUTEAL);
     }
 }
 
@@ -47,10 +47,8 @@ export class FileCycleRepository implements CycleRepository {
         const daysUntilNextPhase = (cycleDay >= 14) ? cycleLength - cycleDay + 1 : 14 - cycleDay;
 
         return {
-            currentPhase: currentPhase,
+            currentPhase: currentPhase!,
             daysUntilNextPhase: daysUntilNextPhase,
-            nextPhase: CyclePhaseDetails[currentPhase].nextPhase,
-            explanation: CyclePhaseDetails[currentPhase].explanation
         };
     }
 }
