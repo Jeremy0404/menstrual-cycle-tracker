@@ -10,6 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 Node.js (version 12 or later recommended)
 npm (usually comes with Node.js)
+Docker (for containerization and deployment)
+
 ### Installing
 
 First, clone the repository to your local machine:
@@ -34,6 +36,21 @@ npm start
 ```
 
 This will start the backend server, typically listening on port 3000 (or whichever port is specified in your configuration).
+
+### Using Docker
+To run the application using Docker, ensure Docker is installed and running on your machine. Then, build the Docker image and run the container using the following commands:
+
+Build the Docker image:
+```bash
+docker build -t menstrual-cycle-tracker-backend .
+```
+
+Run the Docker container:
+```bash
+docker run -p 3000:3000 menstrual-cycle-tracker-backend
+```
+
+This maps port 3000 of the container to port 3000 on your host, making the application accessible at http://localhost:3000.
 
 ## Using the API
 
