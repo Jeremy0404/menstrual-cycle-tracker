@@ -1,3 +1,3 @@
 export interface DateProvider {
-    getCurrentDate(): Date;
+  getCurrentDate(): Date;
 }

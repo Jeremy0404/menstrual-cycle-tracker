@@ -1,7 +1,7 @@
-import {DateProvider} from "../core/ports/date.provider";
+import { DateProvider } from '../core/ports/date.provider';
 
 export class RealDateProvider implements DateProvider {
-    getCurrentDate(): Date {
-        return new Date();
-    }
+  getCurrentDate(): Date {
+    return new Date();
+  }
 }

@@ -1,6 +1,6 @@
-import {CyclePhaseDetails} from "./cycle-phase.enum";
+import { CyclePhaseDetails } from './cycle-phase.enum';
 
 export interface CyclePhaseEntity {
-    currentPhase: CyclePhaseDetails;
-    daysUntilNextPhase: number;
+  currentPhase: CyclePhaseDetails;
+  daysUntilNextPhase: number;
 }
